@@ -1,0 +1,23 @@
+{
+  "name": "hotelmanagement",
+  "version": "1.0.0",
+  "description": "Hotel management program",
+  "main": "index.js",
+  "scripts": {
+    "start": "node App.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "Naveen Patekar",
+  "license": "MIT",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "jest": "^27.2.2"
+  }
+}
