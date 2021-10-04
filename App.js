@@ -1,26 +1,28 @@
 const prompt = require("prompt-sync")();
-const Util = require("./src/utility/Util.js");
+const Utility = require("./src/utility/Utility.js");
 
-const utility = new Util();
-customerDataArray = new Array();
+const utility = new Utility();
+// customerDataArray = new Array();
 flag = true;
 
-console.log("\n Lobby of Hotel City Park");
+console.log("\nWelcome to the Hotel management program");
 
 do {
   let option = utility.menu();
   switch (option) {
     case 1:
-      utility.registerUser(customerDataArray);
+      utility.registerUser();
       break;
     case 2:
       utility.order();
       break;
     case 3:
-    console.log("You Exited!");
+      flag = false;
       break;
     default:
-      console.log("Invalid entry!");
+      console.log("Invalid input!");
       break;
   }
 } while (flag);
+
+

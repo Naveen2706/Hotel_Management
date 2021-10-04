@@ -4,7 +4,7 @@ class Customer {
   gender;
   mobileNumber;
   durationOfStay;
-  key;
+  uniqueKey;
   orders;
 
   constructor(...params) {
@@ -13,7 +13,7 @@ class Customer {
     this.gender = params[2];
     this.mobileNumber = params[3];
     this.durationOfStay = params[4];
-    this.key = params[5];
+    this.uniqueKey = params[5];
     this.orders = params[6];
   }
 
@@ -68,12 +68,12 @@ class Customer {
     return this.durationOfStay;
   }
 
-  set unique(key) {
-    this.key = key;
+  set unique(uniqueKey) {
+    this.uniqueKey = uniqueKey;
   }
 
   get unique() {
-    return this.key;
+    return this.uniqueKey;
   }
 }
 

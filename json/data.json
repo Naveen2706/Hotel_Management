@@ -1,1 +1,9 @@
-{"firstName":"Naveen","lastName":"Patekar","gender":"male","mobileNumber":"7276824385","durationOfStay":"1","uniqueKey":"Nave7276","orders":[]}
+{
+  "firstName": "Naveen",
+  "lastName": "Patekar",
+  "gender": "male",
+  "mobileNumber": "7276824385",
+  "durationOfStay": "1",
+  "uniqueKey": "Nave7276",
+  "orders": []
+}
