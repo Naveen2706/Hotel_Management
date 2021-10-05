@@ -6,6 +6,7 @@ class Customer {
   durationOfStay;
   uniqueKey;
   orders;
+date;
 
   constructor(...params) {
     this.firstName = params[0];
@@ -15,6 +16,7 @@ class Customer {
     this.durationOfStay = params[4];
     this.uniqueKey = params[5];
     this.orders = params[6];
+  this.date = params[2];
   }
 
   set fName(firstName) {
@@ -74,6 +76,10 @@ class Customer {
 
   get unique() {
     return this.uniqueKey;
+  }
+
+  get date() {
+    return this.date;
   }
 }
 

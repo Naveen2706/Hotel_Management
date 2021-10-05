@@ -1,9 +1,1 @@
-{
-  "firstName": "Naveen",
-  "lastName": "Patekar",
-  "gender": "male",
-  "mobileNumber": "7276824385",
-  "durationOfStay": "1",
-  "uniqueKey": "Nave7276",
-  "orders": []
-}
+{"firstName":"Naveen","lastName":"Patekar","gender":"male","mobileNumber":"9876543210","durationOfStay":"1","orders":{"item":"Coffee","quantity":1,"price":20,"totalAmount":20},"date":"2021-10-04T13:21:19.635Z","key":"Nave9876"}

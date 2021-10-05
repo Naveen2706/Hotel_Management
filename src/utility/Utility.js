@@ -20,11 +20,9 @@ class Util {
     customer.gender = prompt("Enter gender : ");
     customer.mNumber = prompt("Enter mobile number : ");
     customer.durationOfStay = prompt("Enter duration of stay (in days) : ");
-    customer.key = this.generateKey(
-      customer.fName,
-      customer.mNumber
-    );
+    customer.key = this.generateKey(customer.fName, customer.mNumber);
     customer.orders = [];
+    customer.date = new Date(); 
     this.write(customer);
     console.log(
       "\n" +
@@ -37,16 +35,16 @@ class Util {
 
   //Write customer info onto JSON file
   write = (customer) => {
-    const doc = fs.readFileSync("D:/HotelManagement/json/data.json");
+    const doc = fs.readFileSync("D:/Custom_Assignments/HotelManagement/json/data.json");
     if (doc.length == 0) {
       const customerStr = JSON.stringify(customer);
-      fs.writeFileSync("D:/HotelManagement/json/data.json", customerStr);
+      fs.writeFileSync("D:/Custom_Assignments/HotelManagement/json/data.json", customerStr);
     } else {
-      
       let detailObj = JSON.parse(doc);
-      detailObj.push(customer);
+      // detailObj.push(customer);
+      detailObj.orders += customer;
       const str = JSON.stringify(detailObj);
-      fs.writeFileSync("D:/HotelManagement/json/data.json", str);
+      fs.writeFileSync("D:/Custom_Assignments/HotelManagement/json/data.json", str);
     }
   };
 
@@ -56,18 +54,13 @@ class Util {
   };
 
   login() {
-    console.log(
-      "\n( Your key is first 2 char of your name and mobile number)"
-    );
+    console.log("\n( Your key is first 2 char of your name and mobile number)");
     let name = prompt("Enter your username : ");
     let key = prompt("Enter key : ");
-    const doc = fs.readFileSync("D:/HotelManagement/json/data.json");
+    const doc = fs.readFileSync("D:/Custom_Assignments/HotelManagement/json/data.json");
     const detailObj = JSON.parse(doc);
     for (let user in detailObj) {
-      if (
-        (detailObj[user].firstName === name && detailObj[user].key) ===
-        key
-      ) {
+      if ((detailObj[user].firstName === name && detailObj[user].key) === key) {
         const userDetailsObj = detailObj[user];
         return userDetailsObj;
       } else if (name == "Admin" && key == "admin123") {
@@ -103,8 +96,6 @@ class Util {
     } while (option != 4);
   };
 
-
-
   orderFood = (loginObject) => {
     let option = 0;
     do {
@@ -115,47 +106,51 @@ class Util {
       console.log("Press 5 - Back\n");
       option = parseInt(prompt("Enter your choice : "));
 
-      const writeOrder = (coffee)=> {
-        const doc = fs.readFileSync("D:/HotelManagement/json/data.json");
-          const detailObj = JSON.parse(doc);
-          // detailObj.orders = coffee;
-          console.log(detailObj.orders);
-          detailObj.push(coffee);
-          console.log(detailObj);
-          const str = JSON.stringify(detailObj);
-          // let confirm = prompt("Enter key to confirm order : ");
-          // if(confirm == detailObj.uniqueKey) {
-          fs.writeFileSync("D:/HotelManagement/json/data.json", str);
+      const writeOrder = (item) => {
+        const doc = fs.readFileSync("D:/Custom_Assignments/HotelManagement/json/data.json");
+        const detailObj = JSON.parse(doc);
+        detailObj.orders = item;
+        console.log(detailObj.orders);
+        // detailObj.push(coffee);
+        console.log(detailObj);
+        const str = JSON.stringify(detailObj);
+        // let confirm = prompt("Enter key to confirm order : ");
+        // if(confirm == detailObj.uniqueKey) {
+        fs.writeFileSync("D:/Custom_Assignments/HotelManagement/json/data.json", str);
         // }
-        }
+      };
 
       switch (option) {
         case 1:
-          const coffee = (new Orders("Coffee", 1, 20, 20));
-        
+          const coffee = new Orders("Coffee", 1, 20, 20);
+
           writeOrder(coffee);
           console.log("\nItem added in cart.");
           break;
 
         case 2:
-          const breakfast = (new Orders("Breakfast", 1, 100, 100));
-         
+          const breakfast = new Orders("Breakfast", 1, 100, 100);
+
           writeOrder(breakfast);
           console.log("\nItem added in cart.");
           break;
 
         case 3:
-          const lunch = (new Orders("Lunch", 1, 200, 200));
-        
+          const lunch = new Orders("Lunch", 1, 200, 200);
+
           writeOrder(lunch);
           console.log("\nItem added in cart.");
           break;
 
         case 4:
-          const dinner = (new Orders("Dinner", 1, 300, 300));
-        
+          const dinner = new Orders("Dinner", 1, 300, 300);
+
           writeOrder(dinner);
           console.log("\nItem added in cart.");
+          break;
+
+        default:
+          console.log();
           break;
       }
     } while (option != 5);
@@ -172,77 +167,78 @@ class Util {
       let orderFoodArray = new Array();
       option = parseInt(prompt("Enter your choice : "));
 
-      const writeOrder = (coffee)=> {
-        const doc = fs.readFileSync("D:/HotelManagement/json/data.json");
-          const detailObj = JSON.parse(doc);
-          // detailObj.orders = coffee;
-          console.log(detailObj.orders);
-          detailObj.push(coffee);
-          console.log(detailObj);
-          const str = JSON.stringify(detailObj);
-          // let confirm = prompt("Enter key to confirm order : ");
-          // if(confirm == detailObj.uniqueKey) {
-          fs.writeFileSync("D:/HotelManagement/json/data.json", str);
+      const writeOrder = (item) => {
+        const doc = fs.readFileSync("D:/Custom_Assignments/HotelManagement/json/data.json");
+        const detailObj = JSON.parse(doc);
+        detailObj.orders = item;
+        console.log(detailObj.orders);
+        // detailObj.push(coffee);
+        console.log(detailObj);
+        const str = JSON.stringify(detailObj);
+        // let confirm = prompt("Enter key to confirm order : ");
+        // if(confirm == detailObj.uniqueKey) {
+        fs.writeFileSync("D:/Custom_Assignments/HotelManagement/json/data.json", str);
         // }
-        }
+      };
 
       switch (option) {
         case 1:
-          const laundry = (new Orders("Laundry", 1, 200, 200));
+          const laundry = new Orders("Laundry", 1, 200, 200);
           writeOrder(laundry);
           console.log("\nItem added in cart.");
           break;
         case 2:
-          const tour = (new Orders("Tour", 1, 500, 500));
+          const tour = new Orders("Tour", 1, 500, 500);
           writeOrder(tour);
           console.log("\nItem added in cart.");
           break;
         case 3:
-          const bike = (new Orders("Bike", 1, 1000, 1000));
+          const bike = new Orders("Bike", 1, 1000, 1000);
           writeOrder(bike);
           console.log("\nItem added in cart.");
+          break;
+
+        default:
+          console.log();
           break;
       }
     } while (option != 4);
   };
 
   generateBill = () => {
-    const doc = fs.readFileSync("D:/HotelManagement/json/data.json");
+    const doc = fs.readFileSync("D:/Custom_Assignments/HotelManagement/json/data.json");
     const detailObj = JSON.parse(doc);
     console.log(detailObj);
-let bill = detailObj.orders.amount;  
+    let bill = detailObj.orders.totalAmount;
+    return bill;
+    // for (const [key, value] of Object.entries(detailObj.orders)) {
+    //   bill += detailObj.orders.amount;
 
-// for (const [key, value] of Object.entries(detailObj.orders)) {
-//   bill += detailObj.orders.amount;
-  console.log(bill);
-
-// detailObj.forEach(element =>bill + console.log(detailObj.orders.amount));
-// console.log(bill);
-return bill;
+    // detailObj.forEach(element =>bill + console.log(detailObj.orders.amount));
+    // console.log(bill);
+ 
     // const first = detailObj.forEach(element => {
     //   console.log(element);
     // });
     // first();
   };
 
-  adminLogin = 
-  () => {
-    console.log("\nPress 1 - Print Bill");
+  adminLogin = () => {
+    console.log("\nPress 1 - CheckOut");
     console.log("Press 2 - View Customers");
     console.log("Press 3 - To leave\n");
     let option = parseInt(prompt("Enter your choice : "));
     if (option == 1) {
-     
-      console.log(" Bill : " + this.generateBill());
+      this.checkOut();
     } else if (option == 2) {
-      const doc = fs.readFileSync("D:/HotelManagement/json/data.json");
+      const doc = fs.readFileSync("D:/Custom_Assignments/HotelManagement/json/data.json");
       const detailObj = JSON.parse(doc);
       console.log(detailObj);
     } else this.login();
   };
 
   orderFinal = (key, orders) => {
-    const doc = fs.readFileSync("D:/HotelManagement/json/data.json");
+    const doc = fs.readFileSync("D:/Custom_Assignments/HotelManagement/json/data.json");
     const detailObj = JSON.parse(doc);
     detailObj.forEach((element) => {
       if (element.key == key) {
@@ -250,8 +246,23 @@ return bill;
       }
     });
     const str = JSON.stringify(detailObj);
-    fs.writeFileSync("D:/HotelManagement/json/data.json", str);
+    fs.writeFileSync("D:/Custom_Assignments/HotelManagement/json/data.json", str);
   };
+
+  checkOut = () => {
+    const doc = fs.readFileSync("D:/Custom_Assignments/HotelManagement/json/data.json");
+    let detailObj = JSON.parse(doc);
+
+    const orderBill = this.generateBill();
+    const date = new Date;
+
+    console.log('checkout date' + date );
+
+    const totalBill = orderBill + (detailObj.durationOfStay * 1000);
+    console.log("Your total bill is : " + totalBill);
+  }
 }
 
 module.exports = Util;
+
+//checkoutdate,bill-extract,unit test

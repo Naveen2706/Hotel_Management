@@ -2,13 +2,13 @@ class Orders {
   item;
   quantity;
   price;
-  amount;
+  totalAmount;
 
-  constructor(item, quantity, price, amount) {
+  constructor(item, quantity, price, totalAmount) {
     this.item = item;
     this.quantity = quantity;
     this.price = price;
-    this.amount = amount;
+    this.totalAmount = totalAmount;
   }
 }
 
